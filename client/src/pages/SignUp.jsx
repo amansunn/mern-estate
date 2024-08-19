@@ -1,4 +1,4 @@
-import {Link, useNavigate} from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useState } from "react";
 
 export default function SignUp() {
@@ -16,7 +16,7 @@ export default function SignUp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try{
+    try {
 
       setLoading(true);
       const res = await fetch('/api/auth/signup', {
@@ -31,15 +31,15 @@ export default function SignUp() {
         setLoading(false);
         setError(data.message);
         return;
-      }setLoading(false);
+      }else setLoading(false);
       setError(null);
       navigate('/sign-in');
-    }catch (error){
+    } catch (error) {
       setLoading(false);
       setError(error.message);
     }
-    console.log(data);  
-    
+    console.log(data);
+
   };
   // console.log(formData);
   return (
@@ -47,15 +47,15 @@ export default function SignUp() {
       <h1 className='text-3xl text-center font-semibold my-7'>SignUp</h1>
       <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
         <input type="text" placeholder='Username'
-        id='username' 
-        className='border p-3 rounded-lg' onChange={handleChange}/>
+          id='username'
+          className='border p-3 rounded-lg' onChange={handleChange} />
         <input type="email" placeholder='Email'
-        id='email'
-         className='border p-3 rounded-lg' onChange={handleChange}/>
+          id='email'
+          className='border p-3 rounded-lg' onChange={handleChange} />
         <input type="password" placeholder='Password'
-        id='password'
-         className='border p-3 rounded-lg'onChange={handleChange}/>
-        <button disabled={loading} className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80'>{loading? 'loading...' : 'Signup'}</button>
+          id='password'
+          className='border p-3 rounded-lg' onChange={handleChange} />
+        <button disabled={loading} className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80'>{loading ? 'loading...' : 'Signup'}</button>
       </form>
       <div className='flex gap-2 mt-5'>
         <p>Have an account?</p>
