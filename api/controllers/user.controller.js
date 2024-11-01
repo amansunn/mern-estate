@@ -3,6 +3,7 @@ import User from "../models/user.model.js";
 import { errorHandler } from "../utils/error.js";
 
 export const test = (req, res) => {
+<<<<<<< HEAD
   res.json({
     message: "Api route is working!",
   });
@@ -34,3 +35,14 @@ export const updateUser = async (req, res, next) => {
     next(error);
   }
 };
+=======
+     res.json({
+        message: "Api route is working!"
+})
+};
+export const updateUser = (req, res) => {
+    res.json({
+        message: "Hello World!"
+})
+};
+>>>>>>> 4708a4b7c8368210dba10152f4c50325fc2915c2

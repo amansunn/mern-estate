@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import jwt from 'jsonwebtoken';
 
 export const verifyToken = (req, res, next) =>{
@@ -9,4 +10,8 @@ export const verifyToken = (req, res, next) =>{
             req.user = user;
             next();
         });
+=======
+export const verifyToken = (req, res, next) =>{
+    
+>>>>>>> 4708a4b7c8368210dba10152f4c50325fc2915c2
 }
