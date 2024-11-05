@@ -1,5 +1,5 @@
-<<<<<<< HEAD
 import jwt from 'jsonwebtoken';
+import {errorHandler} from '../utils/error.js';
 
 export const verifyToken = (req, res, next) =>{
     const token = req.cookies.access_token;
@@ -10,8 +10,4 @@ export const verifyToken = (req, res, next) =>{
             req.user = user;
             next();
         });
-=======
-export const verifyToken = (req, res, next) =>{
-    
->>>>>>> 4708a4b7c8368210dba10152f4c50325fc2915c2
 }

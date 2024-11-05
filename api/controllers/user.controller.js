@@ -3,13 +3,13 @@ import User from "../models/user.model.js";
 import { errorHandler } from "../utils/error.js";
 
 export const test = (req, res) => {
-<<<<<<< HEAD
   res.json({
     message: "Api route is working!",
   });
 };
 export const updateUser = async (req, res, next) => {
-        if (req.user.id !== req.params.id) {
+  
+  if (req.user.id !== req.params.id) {
     return next(errorHandler(401, "You can only update your own account!"));
   }
   try {
@@ -29,20 +29,10 @@ export const updateUser = async (req, res, next) => {
       },
       { new: true }
     );
+
     const { password, ...rest } = updatedUser._doc;
     res.status(200).json(rest);
   } catch (error) {
     next(error);
   }
 };
-=======
-     res.json({
-        message: "Api route is working!"
-})
-};
-export const updateUser = (req, res) => {
-    res.json({
-        message: "Hello World!"
-})
-};
->>>>>>> 4708a4b7c8368210dba10152f4c50325fc2915c2
