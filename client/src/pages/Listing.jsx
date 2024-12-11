@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore from 'swiper';
@@ -10,6 +10,7 @@ import { FaBath, FaBed, FaParking, FaChair, FaShare } from 'react-icons/fa';
 import 'leaflet/dist/leaflet.css';
 import { FaLocationDot } from 'react-icons/fa6';
 import { useSelector } from 'react-redux';
+import Contact from '../components/Contact';
 // import Contact from '../components/Contact';
 
 export default function Listing() {
@@ -17,10 +18,10 @@ export default function Listing() {
     const [listing, setListing] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
-    
+    const [contact, setContact] = useState(false)
     const [copied, setCopied] = useState(false);
     const params = useParams();
-    const { currentUser } = useSelector((state) => state.user);
+    const  {currentUser}  = useSelector((state) => state.user);
 
     useEffect(() => {
         const fetchListing = async () => {
@@ -85,11 +86,11 @@ export default function Listing() {
                     </Swiper>
 
                     
-                    <div className='p-4'>
-                        <h1 className='text-3xl font-semibold'>
+                    <div className='flex flex-col max-w-4xl mx-auto p-3 my-7 gap-4 '>
+                        <p className='text-3xl font-semibold'>
                             {listing.name} - ${listing.regularPrice.toLocaleString()}
                             {listing.type === 'rent' && ' / month'}
-                        </h1>
+                        </p>
 
                         <p className='flex items-center mt-6 gap-2 text-slate-600'>
                             <FaLocationDot className='text-green-700' />
@@ -130,8 +131,17 @@ export default function Listing() {
                                 {listing.furnished ? 'Furnished' : 'Unfurnished'}
                             </li>
                         </ul>
+                        {currentUser && currentUser._id !== listing.userRef && !contact && (
+                            <button 
+                                onClick={() => setContact(true)}
+                                className='bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 p-3 w-full mt-4'
+                            >
+                                Contact Landlord
+                            </button>
+                        )}
 
-                       
+                        {contact && <Contact listing={listing} />}
+                        
                     </div>
                 </div>
             )}
